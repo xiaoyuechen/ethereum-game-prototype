@@ -1,0 +1,102 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.7.0;
+
+import "./VehicleStorage.sol";
+
+contract TravelSystem {
+    VehicleStorage vehicleStorage;
+    
+    modifier inFuture(uint time) {
+        require(block.timestamp >= time, "must be sheduled in future");
+        _;
+    }
+    
+    modifier onlyOwner(bytes32 vehicleId) {
+        require(
+            vehicleStorage.getVehicleOwnershipComponent(vehicleId) == tx.origin,
+            "caller must be the vehicle owner");
+        _;
+    }
+    
+    constructor (address vehicleStorageAddress) {
+        vehicleStorage = VehicleStorage(vehicleStorageAddress);
+    }
+    
+    function getPosition(bytes32 vehicleId, uint time) 
+    public 
+    view 
+    returns (int posX, int posY) {
+        (Game.TravelState state, int originX, int originY, , , , ) 
+        = vehicleStorage.getVehicleTravelComponent(vehicleId);
+        if (state == Game.TravelState.STATIONARY) {
+            posX = originX;
+            posY = originY;
+        }
+        else if (state == Game.TravelState.EN_ROUTE) {
+            (posX, posY) = getDynamicPosition(vehicleId, time);
+        }
+    }
+    
+    function station(bytes32 vehicleId, uint time) 
+    public 
+    inFuture(time)
+    onlyOwner(vehicleId) {
+        (int posX, int posY) = getDynamicPosition(vehicleId, time);
+        vehicleStorage.setVehicleStationAttrib(
+            vehicleId, 
+            Game.TravelState.STATIONARY, 
+            posX, posY);
+    }
+    
+    function depature(
+        bytes32 vehicleId, 
+        int destinationX, int destinationY, 
+        uint depatureTime, 
+        int speed) 
+        public 
+        inFuture(depatureTime)
+        onlyOwner(vehicleId) {
+        require(speed <= vehicleStorage.getVehicleMovementComponent(vehicleId), 
+            "speed must be less than vehicle maxSpeed");
+        
+        require(vehicleStorage.getVehicleTravelState(vehicleId) == Game.TravelState.STATIONARY, 
+            "vehicle must be stationary");
+        
+        vehicleStorage.setVehicleDepartureAttrib(
+            vehicleId, 
+            Game.TravelState.EN_ROUTE,
+            destinationX, destinationY, 
+            depatureTime, 
+            speed);
+    }
+    
+    function getDynamicPosition(bytes32 vehicleId, uint time) 
+    private
+    view 
+    returns (int posX, int posY) {
+        (Game.TravelState state,
+        int originX, int originY,
+        int destinationX, int destinationY,
+        uint depatureTime,
+        int speed)
+        = vehicleStorage.getVehicleTravelComponent(vehicleId);
+        require(state == Game.TravelState.EN_ROUTE, "vehicle must be en route");
+        uint travelledTime = time - depatureTime;
+        int travelledDistance = speed * int(travelledTime);
+        int deltaX = destinationX - originX;
+        int deltaY = destinationY - originY;
+        int deltaXLength = Math.abs(deltaX);
+        int deltaYLength = Math.abs(deltaY);
+        int manhattanDist =  deltaXLength + deltaYLength;
+        if (travelledDistance < manhattanDist) {
+            posX = deltaXLength * travelledDistance / manhattanDist;
+            posX = deltaX > 0 ? posX : -posX;
+            posY = deltaYLength * travelledDistance / manhattanDist;
+            posY = deltaY > 0 ? posY : -posY;
+        } else {
+            posX = destinationX;
+            posY = destinationY;
+        }
+    }
+}
+

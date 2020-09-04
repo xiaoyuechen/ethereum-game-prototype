@@ -1,0 +1,111 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.7.0;
+
+import "./Game.sol";
+
+contract VehicleStorage {
+    mapping(bytes32 => Game.Vehicle) vehicleMap;
+    
+    function getVehicleOwnershipComponent(bytes32 id) public view returns (address owner) {
+        owner = vehicleMap[id].ownershipComponent.owner;
+    }
+    
+    function getVehicleMovementComponent(bytes32 id) public view returns (int maxSpeed) {
+        maxSpeed = vehicleMap[id].movementComponent.maxSpeed;
+    }
+    
+    function getVehicleTravelComponent(bytes32 id) public view returns (
+        Game.TravelState state, 
+        int originX, int originY, 
+        int destinationX, int destinationY, 
+        uint depatureTime, 
+        int speed) {
+        Game.TravelComponent storage comp = vehicleMap[id].travelComponent;
+        state = comp.state;
+        originX = comp.origin.x;
+        originY = comp.origin.y;
+        destinationX = comp.destination.x;
+        destinationY = comp.destination.y;
+        depatureTime = comp.depatureTime;
+        speed = comp.speed;
+    }
+    
+    function getVehicleTravelState(bytes32 id) 
+    public 
+    view 
+    returns (Game.TravelState state) {
+        state = vehicleMap[id].travelComponent.state;
+    }
+    
+    function addVehicle(bytes32 id, address owner, int maxSpeed, int posX, int posY) public {
+        Game.Vehicle storage vehicle = vehicleMap[id];
+        require(!vehicleExists(vehicle), "vehicle must not exist");
+        vehicle.ownershipComponent.owner = owner;
+        vehicle.movementComponent.maxSpeed = maxSpeed;
+        vehicle.travelComponent.origin.x = posX;
+        vehicle.travelComponent.origin.y = posY;
+        vehicle.travelComponent.destination.x = posX;
+        vehicle.travelComponent.destination.y = posY;
+    }
+    
+    // 0x1122334455667788991011121314151617181920212223242526272829303132, 0x98EEB3968006Ec5E6Cd8c82E9eA05Fd4C02e0534, 999, 0, 1
+    function setVehicleOwner(bytes32 id, address newOwner) public {
+        Game.Vehicle storage vehicle = vehicleMap[id];
+        require(vehicleExists(vehicle), "vehicle must exist");
+        vehicle.ownershipComponent.owner = newOwner;
+    }
+    
+    function setVehicleMovement(bytes32 id, int maxSpeed) public {
+        Game.Vehicle storage vehicle = vehicleMap[id];
+        require(vehicleExists(vehicle), "vehicle must exist");
+        vehicle.movementComponent.maxSpeed = maxSpeed;
+    }
+    
+    function setVehicleStationAttrib(
+        bytes32 id, 
+        Game.TravelState state, 
+        int originX, int originY) public {
+        Game.Vehicle storage vehicle = vehicleMap[id];
+        require(vehicleExists(vehicle), "vehicle must exist");
+        vehicle.travelComponent.state = state;
+        vehicle.travelComponent.origin.x = originX;
+        vehicle.travelComponent.origin.y = originY;
+    }
+    
+    function setVehicleDepartureAttrib(
+        bytes32 id, 
+        Game.TravelState state, 
+        int destinationX, int destinationY, 
+        uint depatureTime, 
+        int speed) public {
+        Game.Vehicle storage vehicle = vehicleMap[id];
+        require(vehicleExists(vehicle), "vehicle must exist");
+        vehicle.travelComponent.state = state;
+        vehicle.travelComponent.destination.x = destinationX;
+        vehicle.travelComponent.destination.y = destinationY;
+        vehicle.travelComponent.depatureTime = depatureTime;
+        vehicle.travelComponent.speed = speed;
+        }
+    
+    function setVehicleTravel(
+        bytes32 id, 
+        Game.TravelState state, 
+        int originX, int originY, 
+        int destinationX, int destinationY, 
+        uint depatureTime, 
+        int speed) public {
+        Game.Vehicle storage vehicle = vehicleMap[id];
+        require(vehicleExists(vehicle), "vehicle must exist");
+        vehicle.travelComponent.state = state;
+        vehicle.travelComponent.origin.x = originX;
+        vehicle.travelComponent.origin.y = originY;
+        vehicle.travelComponent.destination.x = destinationX;
+        vehicle.travelComponent.destination.y = destinationY;
+        vehicle.travelComponent.depatureTime = depatureTime;
+        vehicle.travelComponent.speed = speed;
+    }
+    
+    function vehicleExists(Game.Vehicle storage vehicle) private view returns (bool) {
+        return vehicle.ownershipComponent.owner != address(0);
+    }
+}

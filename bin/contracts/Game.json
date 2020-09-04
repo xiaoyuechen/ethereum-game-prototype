@@ -1,0 +1,785 @@
+{
+    "contractName": "Game",
+    "abi": [],
+    "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"d:/repos/ethereum/prototype/contracts/Game.sol\":\"Game\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"d:/repos/ethereum/prototype/contracts/Game.sol\":{\"keccak256\":\"0x80474145d74eac1cef697ce809336c9a054541aea0a425da3f58de7e0f1556d2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b51365a0d3f321c588d60fc8dfbabdc429fb176d9308ab6875a7d5ea887ddc1d\",\"dweb:/ipfs/QmUmVGEXC2w2XWw4V8DHuqJt8TQhQwkCxfUFY75kPZybZT\"]},\"d:/repos/ethereum/prototype/contracts/Math.sol\":{\"keccak256\":\"0xdf167f8ec00c4502b5f37a6a26ea5bbe3a24db72b323226780fc997b6a71ca41\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ddabe0b6abf1c13f2c776779eaec332f5cf49e4c932fe576c438dc01056936cf\",\"dweb:/ipfs/QmXzL8rJpjmncoLn8UcDdKoZaSt23wrJmBiW3A4XbhUD6h\"]}},\"version\":1}",
+    "bytecode": "60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220824359d188977a97f9bae7c7e053d8344ca5e0680dc8104dbf4ed855ac7b706a64736f6c63430007000033",
+    "deployedBytecode": "73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220824359d188977a97f9bae7c7e053d8344ca5e0680dc8104dbf4ed855ac7b706a64736f6c63430007000033",
+    "sourceMap": "85:1048:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;",
+    "deployedSourceMap": "85:1048:0:-:0;;;;;;;;",
+    "sourcePath": "d:/repos/ethereum/prototype/contracts/Game.sol",
+    "compiler": {
+        "name": "solc",
+        "version": "0.7.0+commit.9e61f92b"
+    },
+    "ast": {
+        "absolutePath": "d:/repos/ethereum/prototype/contracts/Game.sol",
+        "exportedSymbols": {
+            "Game": [
+                56
+            ]
+        },
+        "id": 57,
+        "license": "MIT",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 1,
+                "literals": [
+                    "solidity",
+                    "0.7",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "35:22:0"
+            },
+            {
+                "absolutePath": "d:/repos/ethereum/prototype/contracts/Math.sol",
+                "file": "./Math.sol",
+                "id": 2,
+                "nodeType": "ImportDirective",
+                "scope": 57,
+                "sourceUnit": 85,
+                "src": "61:20:0",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "library",
+                "documentation": null,
+                "fullyImplemented": true,
+                "id": 56,
+                "linearizedBaseContracts": [
+                    56
+                ],
+                "name": "Game",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "canonicalName": "Game.MovementComponent",
+                        "id": 5,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 4,
+                                "mutability": "mutable",
+                                "name": "maxSpeed",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 5,
+                                "src": "147:14:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_int32",
+                                    "typeString": "int32"
+                                },
+                                "typeName": {
+                                    "id": 3,
+                                    "name": "int32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "147:5:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_int32",
+                                        "typeString": "int32"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "MovementComponent",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "111:58:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "Game.TravelState",
+                        "id": 8,
+                        "members": [
+                            {
+                                "id": 6,
+                                "name": "STATIONARY",
+                                "nodeType": "EnumValue",
+                                "src": "209:10:0"
+                            },
+                            {
+                                "id": 7,
+                                "name": "EN_ROUTE",
+                                "nodeType": "EnumValue",
+                                "src": "231:8:0"
+                            }
+                        ],
+                        "name": "TravelState",
+                        "nodeType": "EnumDefinition",
+                        "src": "181:65:0"
+                    },
+                    {
+                        "canonicalName": "Game.TravelComponent",
+                        "id": 19,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 10,
+                                "mutability": "mutable",
+                                "name": "state",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 19,
+                                "src": "293:17:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_enum$_TravelState_$8",
+                                    "typeString": "enum Game.TravelState"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 9,
+                                    "name": "TravelState",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 8,
+                                    "src": "293:11:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_enum$_TravelState_$8",
+                                        "typeString": "enum Game.TravelState"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 12,
+                                "mutability": "mutable",
+                                "name": "origin",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 19,
+                                "src": "321:19:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_Vector2_$63_storage_ptr",
+                                    "typeString": "struct Math.Vector2"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 11,
+                                    "name": "Math.Vector2",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 63,
+                                    "src": "321:12:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Vector2_$63_storage_ptr",
+                                        "typeString": "struct Math.Vector2"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 14,
+                                "mutability": "mutable",
+                                "name": "destination",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 19,
+                                "src": "351:24:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_Vector2_$63_storage_ptr",
+                                    "typeString": "struct Math.Vector2"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 13,
+                                    "name": "Math.Vector2",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 63,
+                                    "src": "351:12:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Vector2_$63_storage_ptr",
+                                        "typeString": "struct Math.Vector2"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 16,
+                                "mutability": "mutable",
+                                "name": "depatureTime",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 19,
+                                "src": "386:17:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                },
+                                "typeName": {
+                                    "id": 15,
+                                    "name": "uint",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "386:4:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 18,
+                                "mutability": "mutable",
+                                "name": "speed",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 19,
+                                "src": "414:11:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_int32",
+                                    "typeString": "int32"
+                                },
+                                "typeName": {
+                                    "id": 17,
+                                    "name": "int32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "414:5:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_int32",
+                                        "typeString": "int32"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "TravelComponent",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "258:175:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "Game.OwnershipComponent",
+                        "id": 22,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 21,
+                                "mutability": "mutable",
+                                "name": "owner",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 22,
+                                "src": "482:13:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                },
+                                "typeName": {
+                                    "id": 20,
+                                    "name": "address",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "482:7:0",
+                                    "stateMutability": "nonpayable",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "OwnershipComponent",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "445:58:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "Game.Vehicle",
+                        "id": 29,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 24,
+                                "mutability": "mutable",
+                                "name": "ownershipComponent",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 29,
+                                "src": "541:37:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_OwnershipComponent_$22_storage_ptr",
+                                    "typeString": "struct Game.OwnershipComponent"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 23,
+                                    "name": "OwnershipComponent",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 22,
+                                    "src": "541:18:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_OwnershipComponent_$22_storage_ptr",
+                                        "typeString": "struct Game.OwnershipComponent"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 26,
+                                "mutability": "mutable",
+                                "name": "movementComponent",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 29,
+                                "src": "589:35:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_MovementComponent_$5_storage_ptr",
+                                    "typeString": "struct Game.MovementComponent"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 25,
+                                    "name": "MovementComponent",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 5,
+                                    "src": "589:17:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_MovementComponent_$5_storage_ptr",
+                                        "typeString": "struct Game.MovementComponent"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 28,
+                                "mutability": "mutable",
+                                "name": "travelComponent",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 29,
+                                "src": "635:31:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_TravelComponent_$19_storage_ptr",
+                                    "typeString": "struct Game.TravelComponent"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 27,
+                                    "name": "TravelComponent",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 19,
+                                    "src": "635:15:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_TravelComponent_$19_storage_ptr",
+                                        "typeString": "struct Game.TravelComponent"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "Vehicle",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "515:159:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "Game.User",
+                        "id": 35,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 31,
+                                "mutability": "mutable",
+                                "name": "username",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 35,
+                                "src": "709:16:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_bytes32",
+                                    "typeString": "bytes32"
+                                },
+                                "typeName": {
+                                    "id": 30,
+                                    "name": "bytes32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "709:7:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes32",
+                                        "typeString": "bytes32"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 34,
+                                "mutability": "mutable",
+                                "name": "Vehicles",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 35,
+                                "src": "736:18:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_array$_t_struct$_Vehicle_$29_storage_$dyn_storage_ptr",
+                                    "typeString": "struct Game.Vehicle[]"
+                                },
+                                "typeName": {
+                                    "baseType": {
+                                        "contractScope": null,
+                                        "id": 32,
+                                        "name": "Vehicle",
+                                        "nodeType": "UserDefinedTypeName",
+                                        "referencedDeclaration": 29,
+                                        "src": "736:7:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_Vehicle_$29_storage_ptr",
+                                            "typeString": "struct Game.Vehicle"
+                                        }
+                                    },
+                                    "id": 33,
+                                    "length": null,
+                                    "nodeType": "ArrayTypeName",
+                                    "src": "736:9:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Vehicle_$29_storage_$dyn_storage_ptr",
+                                        "typeString": "struct Game.Vehicle[]"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "User",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "686:76:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "Game.Site",
+                        "id": 44,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 37,
+                                "mutability": "mutable",
+                                "name": "name",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 44,
+                                "src": "793:11:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_string_storage_ptr",
+                                    "typeString": "string"
+                                },
+                                "typeName": {
+                                    "id": 36,
+                                    "name": "string",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "793:6:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_storage_ptr",
+                                        "typeString": "string"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 39,
+                                "mutability": "mutable",
+                                "name": "position",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 44,
+                                "src": "815:21:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_Vector2_$63_storage_ptr",
+                                    "typeString": "struct Math.Vector2"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 38,
+                                    "name": "Math.Vector2",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 63,
+                                    "src": "815:12:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Vector2_$63_storage_ptr",
+                                        "typeString": "struct Math.Vector2"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 41,
+                                "mutability": "mutable",
+                                "name": "graphicsComponent",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 44,
+                                "src": "847:39:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_SiteGraphicsComponent_$51_storage_ptr",
+                                    "typeString": "struct Game.SiteGraphicsComponent"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 40,
+                                    "name": "SiteGraphicsComponent",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 51,
+                                    "src": "847:21:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_SiteGraphicsComponent_$51_storage_ptr",
+                                        "typeString": "struct Game.SiteGraphicsComponent"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 43,
+                                "mutability": "mutable",
+                                "name": "messageComponent",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 44,
+                                "src": "897:37:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_SiteMessageComponent_$55_storage_ptr",
+                                    "typeString": "struct Game.SiteMessageComponent"
+                                },
+                                "typeName": {
+                                    "contractScope": null,
+                                    "id": 42,
+                                    "name": "SiteMessageComponent",
+                                    "nodeType": "UserDefinedTypeName",
+                                    "referencedDeclaration": 55,
+                                    "src": "897:20:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_SiteMessageComponent_$55_storage_ptr",
+                                        "typeString": "struct Game.SiteMessageComponent"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "Site",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "770:172:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "Game.SiteGraphicsComponent",
+                        "id": 51,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 46,
+                                "mutability": "mutable",
+                                "name": "sizeX",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 51,
+                                "src": "994:11:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_int32",
+                                    "typeString": "int32"
+                                },
+                                "typeName": {
+                                    "id": 45,
+                                    "name": "int32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "994:5:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_int32",
+                                        "typeString": "int32"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 48,
+                                "mutability": "mutable",
+                                "name": "sizeY",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 51,
+                                "src": "1016:11:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_int32",
+                                    "typeString": "int32"
+                                },
+                                "typeName": {
+                                    "id": 47,
+                                    "name": "int32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "1016:5:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_int32",
+                                        "typeString": "int32"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 50,
+                                "mutability": "mutable",
+                                "name": "color",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 51,
+                                "src": "1038:12:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint32",
+                                    "typeString": "uint32"
+                                },
+                                "typeName": {
+                                    "id": 49,
+                                    "name": "uint32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "1038:6:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint32",
+                                        "typeString": "uint32"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "SiteGraphicsComponent",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "954:104:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "Game.SiteMessageComponent",
+                        "id": 55,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 54,
+                                "mutability": "mutable",
+                                "name": "messages",
+                                "nodeType": "VariableDeclaration",
+                                "overrides": null,
+                                "scope": 55,
+                                "src": "1105:17:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                                    "typeString": "string[]"
+                                },
+                                "typeName": {
+                                    "baseType": {
+                                        "id": 52,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1105:6:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "id": 53,
+                                    "length": null,
+                                    "nodeType": "ArrayTypeName",
+                                    "src": "1105:8:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                                        "typeString": "string[]"
+                                    }
+                                },
+                                "value": null,
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "SiteMessageComponent",
+                        "nodeType": "StructDefinition",
+                        "scope": 56,
+                        "src": "1066:64:0",
+                        "visibility": "public"
+                    }
+                ],
+                "scope": 57,
+                "src": "85:1048:0"
+            }
+        ],
+        "src": "35:1098:0"
+    },
+    "functionHashes": {},
+    "gasEstimates": {
+        "creation": {
+            "codeDepositCost": "17200",
+            "executionCost": "97",
+            "totalCost": "17297"
+        }
+    }
+}
